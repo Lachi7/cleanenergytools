@@ -712,7 +712,7 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
     <div className="text-center">
       <p className="font-semibold text-xl mb-2">CECECO Clean Energy Hackathon 2026</p>
       <p className="text-gray-300 mb-4">Clean Energy Funding Prioritization Tool</p>
-      <p className="text-sm text-gray-400">© 2026to. All rights reserved.</p>
+      <p className="text-sm text-gray-400">© 2026. All rights reserved.</p>
     </div>
   </div>
 </div>
