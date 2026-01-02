@@ -213,63 +213,68 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50" style={{ fontFamily: "'Open Sans', sans-serif" }}>
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex items-center gap-3 mb-2">
-            <Zap className="w-8 h-8" />
-            <h1 className="text-3xl font-bold">Clean Energy Funding Prioritization Tool</h1>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2">
+            <Zap className="w-6 h-6 sm:w-8 sm:h-8" />
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Clean Energy Funding Prioritization Tool</h1>
           </div>
-          <p className="text-blue-100">Data-Driven Regional Investment Planning for Azerbaijan's Clean Energy Transition</p>
-          <div className="mt-4 flex gap-4">
+          <p className="text-sm sm:text-base text-blue-100">Data-Driven Regional Investment Planning for Azerbaijan's Clean Energy Transition</p>
+          <div className="mt-4 flex flex-wrap gap-2 sm:gap-4">
             <button 
               onClick={() => setView('dashboard')}
-              className={`px-4 py-2 rounded-lg transition ${view === 'dashboard' ? 'bg-white text-blue-600' : 'bg-blue-700 hover:bg-blue-800'}`}
+              className={`px-3 sm:px-4 py-2 rounded-lg transition text-sm sm:text-base ${view === 'dashboard' ? 'bg-white text-blue-600' : 'bg-blue-700 hover:bg-blue-800'}`}
             >
-              Regional Dashboard
+              <span className="hidden sm:inline">Regional Dashboard</span>
+              <span className="sm:hidden">Dashboard</span>
             </button>
             <button 
               onClick={() => setView('methodology')}
-              className={`px-4 py-2 rounded-lg transition ${view === 'methodology' ? 'bg-white text-blue-600' : 'bg-blue-700 hover:bg-blue-800'}`}
+              className={`px-3 sm:px-4 py-2 rounded-lg transition text-sm sm:text-base ${view === 'methodology' ? 'bg-white text-blue-600' : 'bg-blue-700 hover:bg-blue-800'}`}
             >
               Methodology
             </button>
             <button 
               onClick={() => {
+                setView('dashboard');
                 setCompareMode(!compareMode);
                 if (!compareMode) setCompareRegions([]);
               }}
               className={`px-4 py-2 rounded-lg transition flex items-center gap-2 ${compareMode ? 'bg-white text-blue-600' : 'bg-blue-700 hover:bg-blue-800'}`}
             >
               <GitCompare className="w-4 h-4" />
-              Compare Regions
+              <span className="hidden sm:inline">Compare Regions</span>
+              <span className="sm:hidden">Compare</span>
             </button>
             <div className="relative ml-auto">
               <button 
                 onClick={() => setShowExportMenu(!showExportMenu)}
-                className="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 transition flex items-center gap-2"
+                className="px-3 sm:px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 transition flex items-center gap-2 text-sm sm:text-base"
               >
                 <Download className="w-4 h-4" />
-                Export Data
+                <span className="hidden sm:inline">Export Data</span>
+                <span className="sm:hidden">Export</span>
               </button>
               {showExportMenu && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-50 border">
+                <div className="absolute right-0 mt-2 w-48 sm:w-56 bg-white rounded-lg shadow-xl z-50 border">
                   <div className="py-2">
                     <button 
                       onClick={exportToCSV}
-                      className="w-full px-4 py-2 text-left hover:bg-gray-100 transition text-blue-600 hover:text-blue-800"
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 transition  text-blue-600 hover:text-blue-800"
                     >
                       Export as CSV
                     </button>
                     <button 
                       onClick={exportToJSON}
-                      className="w-full px-4 py-2 text-left hover:bg-gray-100 transition text-blue-600 hover:text-blue-800"
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 transition  text-blue-600 hover:text-blue-800"
                     >
                       Export as JSON
                     </button>
                     <button 
                       onClick={exportReport}
-                      className="w-full px-4 py-2 text-left hover:bg-gray-100 transition text-blue-600 hover:text-blue-800"
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 transition  text-blue-600 hover:text-blue-800"
                     >
-                      Export Full Report (TXT)
+                      <span className="hidden sm:inline">Export Full Report (TXT)</span>
+                      <span className="sm:inline md:hidden">Full Report (TXT)</span>
                     </button>
                   </div>
                 </div>
@@ -279,41 +284,41 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {view === 'dashboard' ? (
           <>
             {/* Compare Mode Banner */}
             {compareMode && (
-              <div className="bg-blue-600 text-white rounded-lg shadow-lg p-4 mb-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <GitCompare className="w-5 h-5" />
+              <div className="bg-blue-600 text-white rounded-lg shadow-lg p-3 sm:p-4 mb-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <GitCompare className="w-5 h-5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold">Comparison Mode Active</p>
-                      <p className="text-sm text-blue-100">Select up to 3 regions to compare ({compareRegions.length}/3 selected)</p>
+                      <p className="font-semibold text-sm sm:text-base">Comparison Mode Active</p>
+                      <p className="text-xs sm:text-sm text-blue-100">Select up to 3 regions ({compareRegions.length}/3)</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
                     {compareRegions.length > 0 && (
                       <button
                         onClick={() => setCompareRegions([])}
-                        className="px-3 py-1 bg-blue-700 hover:bg-blue-800 rounded text-sm transition"
+                        className="px-3 py-1 bg-blue-700 hover:bg-blue-800 rounded text-xs sm:text-sm transition flex-1 sm:flex-initial"
                       >
                         Clear All
                       </button>
                     )}
                     <button
                       onClick={() => setCompareMode(false)}
-                      className="px-3 py-1 bg-white text-blue-600 hover:bg-gray-100 rounded text-sm transition"
+                      className="px-3 py-1 bg-white text-blue-600 hover:bg-gray-100 rounded text-xs sm:text-sm transition flex-1 sm:flex-initial"
                     >
-                      Exit Compare Mode
+                      Exit Compare
                     </button>
                   </div>
                 </div>
                 {compareRegions.length > 0 && (
-                  <div className="mt-3 flex gap-2">
+                  <div className="mt-3 flex flex-wrap gap-2">
                     {compareRegions.map(r => (
-                      <span key={r.name} className="bg-blue-700 px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                      <span key={r.name} className="bg-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center gap-2">
                         {r.name}
                         <button onClick={() => toggleCompareRegion(r)} className="hover:text-blue-200">
                           <X className="w-3 h-3" />
@@ -327,21 +332,21 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
 
             {/* Comparison View */}
             {compareMode && compareRegions.length >= 2 && (
-              <div className="bg-white rounded-lg shadow-lg mb-8">
-                <div className="p-6 border-b">
-                  <h2 className="text-2xl font-bold text-gray-800">Regional Comparison</h2>
-                  <p className="text-gray-600 mt-1">Side-by-side analysis of selected regions</p>
+              <div className="bg-white rounded-lg shadow-lg mb-6 sm:mb-8">
+                <div className="p-4 sm:p-6 border-b">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Regional Comparison</h2>
+                  <p className="text-sm sm:text-base text-gray-600 mt-1">Side-by-side analysis of selected regions</p>
                 </div>
                 
-                <div className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div className="p-4 sm:p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                     {/* Comparison Chart */}
                     <div>
-                      <h3 className="text-lg font-semibold mb-4 text-gray-800">Multi-Region Radar Comparison</h3>
-                      <ResponsiveContainer width="100%" height={300}>
+                      <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-800">Multi-Region Radar Comparison</h3>
+                      <ResponsiveContainer width="100%" height={250}>
                         <RadarChart data={comparisonRadarData}>
                           <PolarGrid />
-                          <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 11 }} />
+                          <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 9 }} />
                           <PolarRadiusAxis domain={[0, 100]} />
                           {compareRegions.map((region, idx) => {
                             const colors = ['#3b82f6', '#10b981', '#f59e0b'];
@@ -356,59 +361,59 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                               />
                             );
                           })}
-                          <Legend />
+                          <Legend wrapperStyle={{ fontSize: '12px' }} />
                         </RadarChart>
                       </ResponsiveContainer>
                     </div>
 
                     {/* Comparison Table */}
                     <div>
-                      <h3 className="text-lg font-semibold mb-4 text-gray-800">Detailed Metrics Comparison</h3>
+                      <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-800">Detailed Metrics Comparison</h3>
                       <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
+                        <table className="w-full text-xs sm:text-sm">
                           <thead className="bg-gray-50">
                             <tr>
-                              <th className="px-3 py-2 text-left font-semibold text-gray-700">Metric</th>
+                              <th className="px-2 sm:px-3 py-2 text-left font-semibold text-gray-700">Metric</th>
                               {compareRegions.map(r => (
-                                <th key={r.name} className="px-3 py-2 text-center font-semibold text-gray-700">{r.name}</th>
+                                <th key={r.name} className="px-2 sm:px-3 py-2 text-center font-semibold text-gray-700 text-xs">{r.name}</th>
                               ))}
                             </tr>
                           </thead>
                           <tbody className="divide-y">
                             <tr className="bg-blue-50">
-                              <td className="px-3 py-2 font-semibold">CERS Score</td>
+                              <td className="px-2 sm:px-3 py-2 font-semibold">CERS Score</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center font-bold text-blue-600">{r.CERS}</td>
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center font-bold text-blue-600">{r.CERS}</td>
                               ))}
                             </tr>
                             <tr>
-                              <td className="px-3 py-2">Renewable Potential</td>
+                              <td className="px-2 sm:px-3 py-2">Renewable Potential</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center">{r.P}</td>
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center">{r.P}</td>
                               ))}
                             </tr>
                             <tr>
-                              <td className="px-3 py-2">Grid Access</td>
+                              <td className="px-2 sm:px-3 py-2">Grid Access</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center">{r.G}</td>
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center">{r.G}</td>
                               ))}
                             </tr>
                             <tr>
-                              <td className="px-3 py-2">Regulatory</td>
+                              <td className="px-2 sm:px-3 py-2">Regulatory</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center">{r.R}</td>
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center">{r.R}</td>
                               ))}
                             </tr>
                             <tr>
-                              <td className="px-3 py-2">Implementation</td>
+                              <td className="px-2 sm:px-3 py-2">Implementation</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center">{r.H}</td>
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center">{r.H}</td>
                               ))}
                             </tr>
                             <tr className="bg-gray-50">
-                              <td className="px-3 py-2 font-semibold">Readiness Level</td>
+                              <td className="px-2 sm:px-3 py-2 font-semibold">Readiness Level</td>
                               {compareRegions.map(r => (
-                                <td key={r.name} className="px-3 py-2 text-center">
+                                <td key={r.name} className="px-2 sm:px-3 py-2 text-center">
                                   <span className={`px-2 py-1 rounded text-xs font-semibold ${r.readiness.bg} ${r.readiness.color}`}>
                                     {r.readiness.level.split(' ')[0]}
                                   </span>
@@ -419,13 +424,13 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                         </table>
                       </div>
                       
-                      <div className="mt-4 space-y-3">
-                        <h4 className="font-semibold text-gray-800">Key Differences:</h4>
+                      <div className="mt-4 space-y-2 sm:space-y-3">
+                        <h4 className="font-semibold text-gray-800 text-sm sm:text-base">Key Differences:</h4>
                         {compareRegions.map(r => (
-                          <div key={r.name} className="text-sm">
+                          <div key={r.name} className="text-xs sm:text-sm">
                             <p className="font-medium text-gray-700">{r.name}:</p>
-                            <p className="text-gray-600 ml-3">Solar: {r.details.solar}, Wind: {r.details.wind}</p>
-                            <p className="text-gray-600 ml-3">{r.details.grid}</p>
+                            <p className="text-gray-600 ml-2 sm:ml-3">Solar: {r.details.solar}, Wind: {r.details.wind}</p>
+                            <p className="text-gray-600 ml-2 sm:ml-3">{r.details.grid}</p>
                           </div>
                         ))}
                       </div>
@@ -435,57 +440,57 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
               </div>
             )}
             {/* Key Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-white rounded-lg shadow p-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="w-5 h-5 text-blue-600" />
-                  <h3 className="font-semibold text-gray-700">Regions Analyzed</h3>
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                  <h3 className="font-semibold text-xs sm:text-sm text-gray-700">Regions Analyzed</h3>
                 </div>
-                <p className="text-3xl font-bold text-blue-600">{enrichedRegions.length}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-blue-600">{enrichedRegions.length}</p>
               </div>
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <Award className="w-5 h-5 text-green-600" />
-                  <h3 className="font-semibold text-gray-700">High Readiness</h3>
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+                  <h3 className="font-semibold text-xs sm:text-sm text-gray-700">High Readiness</h3>
                 </div>
-                <p className="text-3xl font-bold text-green-600">
+                <p className="text-2xl sm:text-3xl font-bold text-green-600">
                   {enrichedRegions.filter(r => r.CERS >= 75).length}
                 </p>
               </div>
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <TrendingUp className="w-5 h-5 text-yellow-600" />
-                  <h3 className="font-semibold text-gray-700">Moderate Readiness</h3>
+                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" />
+                  <h3 className="font-semibold text-xs sm:text-sm text-gray-700">Moderate Readiness</h3>
                 </div>
-                <p className="text-3xl font-bold text-yellow-600">
+                <p className="text-2xl sm:text-3xl font-bold text-yellow-600">
                   {enrichedRegions.filter(r => r.CERS >= 55 && r.CERS < 75).length}
                 </p>
               </div>
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <Info className="w-5 h-5 text-red-600" />
-                  <h3 className="font-semibold text-gray-700">Needs Support</h3>
+                  <Info className="w-4 h-4 sm:w-5 sm:h-5 text-red-600" />
+                  <h3 className="font-semibold text-xs sm:text-sm text-gray-700">Needs Support</h3>
                 </div>
-                <p className="text-3xl font-bold text-red-600">
+                <p className="text-2xl sm:text-3xl font-bold text-red-600">
                   {enrichedRegions.filter(r => r.CERS < 55).length}
                 </p>
               </div>
             </div>
 
             {/* Regional Ranking */}
-            <div className="bg-white rounded-lg shadow-lg mb-8">
-              <div className="p-6 border-b">
-                <h2 className="text-2xl font-bold text-gray-800">Regional Clean Energy Readiness Score (CERS)</h2>
-                <p className="text-gray-600 mt-1">Click on any region to view detailed breakdown</p>
+            <div className="bg-white rounded-lg shadow-lg mb-6 sm:mb-8">
+              <div className="p-4 sm:p-6 border-b">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Regional Clean Energy Readiness Score (CERS)</h2>
+                <p className="text-sm sm:text-base text-gray-600 mt-1">Click on any region to view detailed breakdown</p>
               </div>
-              <div className="p-6">
-                <ResponsiveContainer width="100%" height={400}>
+              <div className="p-4 sm:p-6">
+                <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={chartData} onClick={(data) => data && setSelectedRegion(enrichedRegions.find(r => r.name === data.activeLabel))}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} />
-                    <YAxis domain={[0, 100]} />
+                    <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 10 }} />
+                    <YAxis domain={[0, 100]} tick={{ fontSize: 10 }} />
                     <Tooltip />
-                    <Legend />
+                    <Legend wrapperStyle={{ fontSize: '12px' }} />
                     <Bar dataKey="CERS" fill="#3b82f6" name="Overall CERS" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -493,23 +498,23 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
             </div>
 
             {/* Detailed Rankings Table */}
-            <div className="bg-white rounded-lg shadow-lg mb-8">
-              <div className="p-6 border-b">
-                <h2 className="text-2xl font-bold text-gray-800">Funding Priority Rankings</h2>
+            <div className="bg-white rounded-lg shadow-lg mb-6 sm:mb-8">
+              <div className="p-4 sm:p-6 border-b">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Funding Priority Rankings</h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Rank</th>
-                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Region</th>
-                      <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">CERS</th>
-                      <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">P (35%)</th>
-                      <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">G (25%)</th>
-                      <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">R (25%)</th>
-                      <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">H (15%)</th>
-                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Action</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700">Rank</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700">Region</th>
+                      <th className="px-3 sm:px-6 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700">CERS</th>
+                      <th className="hidden md:table-cell px-3 sm:px-6 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700">P (35%)</th>
+                      <th className="hidden md:table-cell px-3 sm:px-6 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700">G (25%)</th>
+                      <th className="hidden md:table-cell px-3 sm:px-6 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700">R (25%)</th>
+                      <th className="hidden md:table-cell px-3 sm:px-6 py-3 text-center text-xs sm:text-sm font-semibold text-gray-700">H (15%)</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700">Status</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-semibold text-gray-700">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -519,7 +524,7 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                         className={`hover:bg-gray-50 cursor-pointer transition ${compareMode ? 'select-none' : ''} ${compareRegions.find(r => r.name === region.name) ? 'bg-blue-50' : ''}`}
                         onClick={() => compareMode ? toggleCompareRegion(region) : setSelectedRegion(region)}
                       >
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm font-medium text-gray-900">
                           <div className="flex items-center gap-2">
                             {compareMode && (
                               <input
@@ -533,23 +538,25 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                             #{idx + 1}
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">{region.name}</td>
-                        <td className="px-6 py-4 text-center">
-                          <span className="text-lg font-bold text-blue-600">{region.CERS}</span>
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm font-medium text-gray-900">{region.name}</td>
+                        <td className="px-3 sm:px-6 py-4 text-center">
+                          <span className="text-base sm:text-lg font-bold text-blue-600">{region.CERS}</span>
                         </td>
-                        <td className="px-6 py-4 text-center text-sm text-gray-600">{region.P}</td>
-                        <td className="px-6 py-4 text-center text-sm text-gray-600">{region.G}</td>
-                        <td className="px-6 py-4 text-center text-sm text-gray-600">{region.R}</td>
-                        <td className="px-6 py-4 text-center text-sm text-gray-600">{region.H}</td>
-                        <td className="px-6 py-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${region.readiness.bg} ${region.readiness.color}`}>
-                            {region.readiness.level}
+                        <td className="hidden md:table-cell px-3 sm:px-6 py-4 text-center text-xs sm:text-sm text-gray-600">{region.P}</td>
+                        <td className="hidden md:table-cell px-3 sm:px-6 py-4 text-center text-xs sm:text-sm text-gray-600">{region.G}</td>
+                        <td className="hidden md:table-cell px-3 sm:px-6 py-4 text-center text-xs sm:text-sm text-gray-600">{region.R}</td>
+                        <td className="hidden md:table-cell px-3 sm:px-6 py-4 text-center text-xs sm:text-sm text-gray-600">{region.H}</td>
+                        <td className="px-3 sm:px-6 py-4">
+                          <span className={`px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${region.readiness.bg} ${region.readiness.color}`}>
+                            <span className="hidden sm:inline">{region.readiness.level}</span>
+                            <span className="sm:hidden">{region.readiness.level.split(' ')[0]}</span>
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-600">
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-gray-600">
                           {!compareMode && (
                             <button className="text-blue-600 hover:text-blue-800 font-medium">
-                              View Details →
+                              <span className="hidden sm:inline">View Details →</span>
+                              <span className="sm:hidden">View →</span>
                             </button>
                           )}
                           {compareMode && compareRegions.find(r => r.name === region.name) && (
@@ -565,12 +572,12 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
 
             {/* Selected Region Detail */}
             {selectedRegion && (
-              <div className="bg-white rounded-lg shadow-lg mb-8">
-                <div className="p-6 border-b bg-gradient-to-r from-blue-50 to-green-50">
+              <div className="bg-white rounded-lg shadow-lg mb-6 sm:mb-8">
+                <div className="p-4 sm:p-6 border-b bg-gradient-to-r from-blue-50 to-green-50">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h2 className="text-2xl font-bold text-gray-800">{selectedRegion.name}</h2>
-                      <p className="text-gray-600 mt-1">Detailed Implementation Readiness Analysis</p>
+                      <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{selectedRegion.name}</h2>
+                      <p className="text-sm sm:text-base text-gray-600 mt-1">Detailed Implementation Readiness Analysis</p>
                     </div>
                     <button 
                       onClick={() => setSelectedRegion(null)}
@@ -580,26 +587,26 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                     </button>
                   </div>
                   <div className="mt-4">
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                       <div>
-                        <p className="text-sm text-gray-600">Overall CERS</p>
-                        <p className="text-4xl font-bold text-blue-600">{selectedRegion.CERS}</p>
+                        <p className="text-xs sm:text-sm text-gray-600">Overall CERS</p>
+                        <p className="text-3xl sm:text-4xl font-bold text-blue-600">{selectedRegion.CERS}</p>
                       </div>
-                      <div className={`px-4 py-2 rounded-lg ${selectedRegion.readiness.bg}`}>
-                        <p className={`font-semibold ${selectedRegion.readiness.color}`}>{selectedRegion.readiness.level}</p>
-                        <p className="text-sm text-gray-600 mt-1">{selectedRegion.readiness.recommendation}</p>
+                      <div className={`px-3 sm:px-4 py-2 rounded-lg ${selectedRegion.readiness.bg} w-full sm:w-auto`}>
+                        <p className={`font-semibold text-sm sm:text-base ${selectedRegion.readiness.color}`}>{selectedRegion.readiness.level}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 mt-1">{selectedRegion.readiness.recommendation}</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <h3 className="text-lg font-semibold mb-4 text-gray-800">Indicator Breakdown</h3>
-                    <ResponsiveContainer width="100%" height={300}>
+                    <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-800">Indicator Breakdown</h3>
+                    <ResponsiveContainer width="100%" height={250}>
                       <RadarChart data={radarData}>
                         <PolarGrid />
-                        <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 11 }} />
+                        <PolarAngleAxis dataKey="indicator" tick={{ fontSize: 9 }} />
                         <PolarRadiusAxis domain={[0, 100]} />
                         <Radar name={selectedRegion.name} dataKey="value" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
                       </RadarChart>
@@ -607,20 +614,20 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold mb-4 text-gray-800">Regional Characteristics</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-yellow-500 pl-4 py-2">
-                        <p className="text-sm font-semibold text-gray-700">Renewable Energy Potential</p>
-                        <p className="text-sm text-gray-600">Solar: {selectedRegion.details.solar}</p>
-                        <p className="text-sm text-gray-600">Wind: {selectedRegion.details.wind}</p>
+                    <h3 className="text-base sm:text-lg font-semibold mb-4 text-gray-800">Regional Characteristics</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="border-l-4 border-yellow-500 pl-3 sm:pl-4 py-2">
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Renewable Energy Potential</p>
+                        <p className="text-xs sm:text-sm text-gray-600">Solar: {selectedRegion.details.solar}</p>
+                        <p className="text-xs sm:text-sm text-gray-600">Wind: {selectedRegion.details.wind}</p>
                       </div>
-                      <div className="border-l-4 border-blue-500 pl-4 py-2">
-                        <p className="text-sm font-semibold text-gray-700">Infrastructure Status</p>
-                        <p className="text-sm text-gray-600">{selectedRegion.details.grid}</p>
+                      <div className="border-l-4 border-blue-500 pl-3 sm:pl-4 py-2">
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Infrastructure Status</p>
+                        <p className="text-xs sm:text-sm text-gray-600">{selectedRegion.details.grid}</p>
                       </div>
-                      <div className="border-l-4 border-green-500 pl-4 py-2">
-                        <p className="text-sm font-semibold text-gray-700">Implementation Track Record</p>
-                        <p className="text-sm text-gray-600">{selectedRegion.details.projects}</p>
+                      <div className="border-l-4 border-green-500 pl-3 sm:pl-4 py-2">
+                        <p className="text-xs sm:text-sm font-semibold text-gray-700">Implementation Track Record</p>
+                        <p className="text-xs sm:text-sm text-gray-600">{selectedRegion.details.projects}</p>
                       </div>
                     </div>
                   </div>
@@ -630,73 +637,73 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
           </>
         ) : (
           <div className="bg-white rounded-lg shadow-lg">
-            <div className="p-6 border-b">
-              <h2 className="text-2xl font-bold text-gray-800">Methodology: Clean Energy Readiness Score (CERS)</h2>
+            <div className="p-4 sm:p-6 border-b">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Methodology: Clean Energy Readiness Score (CERS)</h2>
             </div>
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
               <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Scoring Formula</h3>
-                <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-600">
-                  <p className="font-mono text-lg">CERS = (P × 0.35) + (G × 0.25) + (R × 0.25) + (H × 0.15)</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Scoring Formula</h3>
+                <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-l-4 border-blue-600 overflow-x-auto">
+                  <p className="font-mono text-sm sm:text-lg">CERS = (P × 0.35) + (G × 0.25) + (R × 0.25) + (H × 0.15)</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="border rounded-lg p-5 bg-yellow-50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="border rounded-lg p-4 sm:p-5 bg-yellow-50">
                   <div className="flex items-center gap-2 mb-3">
-                    <Zap className="w-5 h-5 text-yellow-600" />
-                    <h4 className="font-semibold text-gray-800">Renewable Energy Potential (P) - 35%</h4>
+                    <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" />
+                    <h4 className="font-semibold text-sm sm:text-base text-gray-800">Renewable Energy Potential (P) - 35%</h4>
                   </div>
-                  <p className="text-sm text-gray-700">Natural suitability for renewable energy deployment including solar irradiation levels, wind resource availability, and other renewable sources.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Natural suitability for renewable energy deployment including solar irradiation levels, wind resource availability, and other renewable sources.</p>
                 </div>
 
-                <div className="border rounded-lg p-5 bg-blue-50">
+                <div className="border rounded-lg p-4 sm:p-5 bg-blue-50">
                   <div className="flex items-center gap-2 mb-3">
-                    <Grid3x3 className="w-5 h-5 text-blue-600" />
-                    <h4 className="font-semibold text-gray-800">Grid & Infrastructure (G) - 25%</h4>
+                    <Grid3x3 className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                    <h4 className="font-semibold text-sm sm:text-base text-gray-800">Grid & Infrastructure (G) - 25%</h4>
                   </div>
-                  <p className="text-sm text-gray-700">Proximity to transmission networks, grid capacity and stability, and access to transport infrastructure for project implementation.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Proximity to transmission networks, grid capacity and stability, and access to transport infrastructure for project implementation.</p>
                 </div>
 
-                <div className="border rounded-lg p-5 bg-green-50">
+                <div className="border rounded-lg p-4 sm:p-5 bg-green-50">
                   <div className="flex items-center gap-2 mb-3">
-                    <FileText className="w-5 h-5 text-green-600" />
-                    <h4 className="font-semibold text-gray-800">Regulatory & Policy Readiness (R) - 25%</h4>
+                    <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
+                    <h4 className="font-semibold text-sm sm:text-base text-gray-800">Regulatory & Policy Readiness (R) - 25%</h4>
                   </div>
-                  <p className="text-sm text-gray-700">Alignment with national renewable energy policies, presence of enabling regulations or incentives, and permitting clarity.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Alignment with national renewable energy policies, presence of enabling regulations or incentives, and permitting clarity.</p>
                 </div>
 
-                <div className="border rounded-lg p-5 bg-purple-50">
+                <div className="border rounded-lg p-4 sm:p-5 bg-purple-50">
                   <div className="flex items-center gap-2 mb-3">
-                    <TrendingUp className="w-5 h-5 text-purple-600" />
-                    <h4 className="font-semibold text-gray-800">Historical Implementation (H) - 15%</h4>
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
+                    <h4 className="font-semibold text-sm sm:text-base text-gray-800">Historical Implementation (H) - 15%</h4>
                   </div>
-                  <p className="text-sm text-gray-700">Track record of completed or ongoing renewable energy projects, institutional experience, and evidence of timely delivery.</p>
+                  <p className="text-xs sm:text-sm text-gray-700">Track record of completed or ongoing renewable energy projects, institutional experience, and evidence of timely delivery.</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-3">Score Interpretation</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
-                    <div className="font-bold text-green-700 text-xl">75-100</div>
-                    <div>
-                      <p className="font-semibold text-gray-800">High Readiness</p>
-                      <p className="text-sm text-gray-600">Priority for immediate public funding</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Score Interpretation</h3>
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 bg-green-50 rounded-lg border-l-4 border-green-600">
+                    <div className="font-bold text-green-700 text-lg sm:text-xl">75-100</div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm sm:text-base text-gray-800">High Readiness</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Priority for immediate public funding</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <div className="font-bold text-yellow-700 text-xl">55-74</div>
-                    <div>
-                      <p className="font-semibold text-gray-800">Moderate Readiness</p>
-                      <p className="text-sm text-gray-600">Conditional funding or preparatory support</p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
+                    <div className="font-bold text-yellow-700 text-lg sm:text-xl">55-74</div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm sm:text-base text-gray-800">Moderate Readiness</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Conditional funding or preparatory support</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
-                    <div className="font-bold text-red-700 text-xl">&lt; 55</div>
-                    <div>
-                      <p className="font-semibold text-gray-800">Low Readiness</p>
-                      <p className="text-sm text-gray-600">Not ready for funding; enabling actions required</p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 p-3 sm:p-4 bg-red-50 rounded-lg border-l-4 border-red-600">
+                    <div className="font-bold text-red-700 text-lg sm:text-xl">&lt; 55</div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-sm sm:text-base text-gray-800">Low Readiness</p>
+                      <p className="text-xs sm:text-sm text-gray-600">Not ready for funding; enabling actions required</p>
                     </div>
                   </div>
                 </div>
@@ -707,7 +714,7 @@ Supporting Azerbaijan's 2030 Clean Energy Goals
       </div>
 
      {/* Footer */}
-<div className="bg-gray-800 text-white mt-12">
+     <div className="bg-gray-800 text-white mt-12">
   <div className="max-w-7xl mx-auto px-6 py-8">
     <div className="text-center">
       <p className="font-semibold text-xl mb-2">CECECO Clean Energy Hackathon 2026</p>
